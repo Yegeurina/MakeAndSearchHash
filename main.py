@@ -22,16 +22,19 @@ def makingDictonary(searchPath) :
 
 def findSearchHash(Hashvalue):
     for key, value in hashDic.items():
-        for val in value:
-            if val == Hashvalue:
-                return key
+        if Hashvalue == value :
+            return key
     return "There is no such file"
 
 def HashSearchFunc() :
     searchPath = input("검색하고자 하는 파일의 경로를 입력하세요(입력한 경로부터 모든 하위 디렉토리를 검색합니다.) : ")
-    searchHash = input("찾고자 하는 파일의 해쉬값을 입력하세요 : ")
+    searchHash = input("찾고자 하는 파일의 해쉬값을 입력하세요(MD5,SHA1,SHA256 순서로 입력/띄어쓰기로 구분) : ").split()
+    for i in range(0,3):
+       searchHash[i] = searchHash[i].lower()
+
+    print(searchHash)
     makingDictonary(searchPath)
-    print(findSearchHash(searchHash.lower()))
+    print(findSearchHash(searchHash))
 
 
 if __name__ == '__main__':
